@@ -1,0 +1,29 @@
+[package]
+name = "flitton_fib_rs"
+version = "0.1.0"
+authors = ["Maxwell Flitton <maxwellflitton@gmail.com>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+# pyo3="0.13.0"
+
+[lib]
+name = "flitton_fib_rs"
+crate-type = ["cdylib"]
+
+[dependencies.pyo3]
+version = "0.13.0"
+features = ["extension-module"]
+
+[package.metadata.maturin]
+classifier=[
+    "License :: OSI Approved :: MIT License",
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python",
+    "Programming Language :: Rust",
+    "Operating System :: POSIX",
+    "Operating System :: MacOS :: MacOS X",
+]

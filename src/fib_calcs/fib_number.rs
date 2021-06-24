@@ -1,9 +1,15 @@
-use pyo3::prelude::*;
-// use pyo3::wrap_pyfunction;
+use pyo3::prelude::pyfunction;
 
 
 #[pyfunction]
-pub fn internal_fib_number(number: i32) -> i32 {
-    println!("The number is: {}", number);
-    return 1
+pub fn fibonacci_number(n: i32) -> u64 {
+	if n < 0 {
+		panic!("{} is negative!", n);
+	}
+	match n {
+		0     => panic!("zero is not a right argument to fibonacci_reccursive()!"),
+		1 | 2 => 1,
+        3     => 2,
+		_     => fibonacci_number(n - 1) + fibonacci_number(n - 2)
+	}
 }

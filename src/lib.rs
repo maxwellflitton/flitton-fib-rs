@@ -5,7 +5,7 @@ use pyo3::exceptions::PyTypeError;
 
 mod fib_calcs;
 
-use fib_calcs::fib_number::internal_fib_number;
+use fib_calcs::fib_number::__pyo3_get_function_internal_fib_number;
 
 
 #[pyfunction]

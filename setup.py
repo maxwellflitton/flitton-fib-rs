@@ -7,7 +7,7 @@ setup(
     name="flitton-fib-rs",
     version="0.1",
     # might have to run ".flitton-fib-rs.flitton_fib_rs"
-    rust_extensions=[RustExtension("flitton_fib_rs", path="Cargo.toml", binding=Binding.PyO3)],
+    rust_extensions=[RustExtension(".flitton_fib_rs.flitton_fib_rs", path="Cargo.toml", binding=Binding.PyO3)],
     packages=["flitton_fib_rs"],
     classifiers=[
             "License :: OSI Approved :: MIT License",

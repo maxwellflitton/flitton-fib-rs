@@ -18,7 +18,7 @@ pub fn fib_number_two(number: i32) -> i32 {
 
 
 #[pymodule]
-fn rust_messaging(_py: Python, m: &PyModule) -> PyResult<()> {
+fn flitton_fib_rs(_py: Python, m: &PyModule) -> PyResult<()> {
     // m.add_function(wrap_pyfunction!(fib_number, m)?)?;
     m.add_wrapped(wrap_pyfunction!(fib_number_two));
     // m.add_function(wrap_pyfunction!(generate_message, m)?)?;

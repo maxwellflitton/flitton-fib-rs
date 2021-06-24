@@ -7,7 +7,7 @@ use super::fib_number::fibonacci_number;
 
 
 #[pyfunction]
-pub fn fibonacci_numbers(numbers: PyList) -> u64 {
+pub fn fibonacci_numbers(numbers: Vec<u64>) -> u64 {
     let mut vec: Vec<u64> = Vec::new();
 	
     for n in numbers.iter() {

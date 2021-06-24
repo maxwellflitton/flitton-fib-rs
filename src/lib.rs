@@ -5,7 +5,7 @@ use pyo3::exceptions::PyTypeError;
 
 mod fib_calcs;
 
-use fib_calcs::fib_number;
+use fib_calcs::fib_number::internal_fib_number;
 
 
 #[pyfunction]
@@ -34,7 +34,7 @@ fn flitton_fib_rs(_py: Python, m: &PyModule) -> PyResult<()> {
     // m.add_function(wrap_pyfunction!(fib_number, m)?)?;
     m.add_wrapped(wrap_pyfunction!(fib_number_two));
     m.add_wrapped(wrap_pyfunction!(fibonacci_reccursive));
-    m.add_wrapped(wrap_pyfunction!(fib_number));
+    m.add_wrapped(wrap_pyfunction!(internal_fib_number));
     // m.add_function(wrap_pyfunction!(generate_message, m)?)?;
     // m.add_function(wrap_pyfunction!(send_message, m)?)?;
     // m.add_class::<Planet>()?;

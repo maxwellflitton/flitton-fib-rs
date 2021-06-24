@@ -3,7 +3,7 @@ use pyo3::wrap_pyfunction;
 
 
 #[pyfunction]
-pub fn fib_number(number: i32) -> i32 {
+pub fn internal_fib_number(number: i32) -> i32 {
     println!("The number is: {}", number);
     return 1
 }

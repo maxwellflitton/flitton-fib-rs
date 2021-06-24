@@ -14,7 +14,7 @@ name = "flitton_fib_rs"
 crate-type = ["cdylib"]
 
 [dependencies.pyo3]
-version = "0.13.0"
+version = "0.13.2"
 features = ["extension-module"]
 
 [package.metadata.maturin]

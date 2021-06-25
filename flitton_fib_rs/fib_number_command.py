@@ -11,4 +11,4 @@ def fib_number_command() -> None:
                         help="Fibonacci number to be calculated")
     args = parser.parse_args()
     print(f"Your Fibonacci number is: "
-          f"{fibonacci_number(number=args.number)}")
+          f"{fibonacci_number(n=args.number)}")

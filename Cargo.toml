@@ -13,13 +13,3 @@ crate-type = ["cdylib"]
 [dependencies.pyo3]
 version = "0.13.2"
 features = ["extension-module"]
-
-[package.metadata.flitton_fib_rs]
-classifier=[
-    "License :: OSI Approved :: MIT License",
-    "Development Status :: 3 - Alpha",
-    "Intended Audience :: Developers",
-    "Programming Language :: Python",
-    "Programming Language :: Rust",
-    "Operating System :: MacOS :: MacOS X :: Windows :: Linux",
-]

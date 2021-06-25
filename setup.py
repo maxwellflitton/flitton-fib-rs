@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-
 from setuptools import setup
 from setuptools_rust import Binding, RustExtension
 
@@ -20,4 +19,9 @@ setup(
         ],
     # rust extensions are not zip safe, just like C-extensions.
     zip_safe=False,
+    entry_points={
+        'console_scripts': [
+            'fib-number = flitton_fib_rs.cmd.fib_number:fib_number',
+        ],
+    },
 )

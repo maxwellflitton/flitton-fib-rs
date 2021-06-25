@@ -21,7 +21,7 @@ setup(
     zip_safe=False,
     entry_points={
         'console_scripts': [
-            'fib-number = flitton_fib_rs.flitton_fib_rs.cmd.fib_number:fib_number',
+            'fib-number = flitton_fib_rs:fib_number_command',
         ],
     },
 )

@@ -1,6 +1,6 @@
 import argparse
 
-from ..flitton_fib_rs import fibonacci_number
+from flitton_fib_rs import fibonacci_number
 
 
 def fib_number() -> None:

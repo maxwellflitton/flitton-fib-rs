@@ -10,6 +10,7 @@ class FlittonFibNumberAdapter:
         self.success: bool = False
         self.result: Optional[Union[int, List[int]]] = None
         self.error_message: Optional[str] = None
+        self._process_input()
 
     def _process_input(self) -> None:
         if isinstance(self.number_input, int):

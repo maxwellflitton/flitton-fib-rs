@@ -11,8 +11,8 @@ class FlittonFibNumberAdapter:
         self.success: bool = False
         self.result: Optional[Union[int, List[int]]] = None
         self.error_message: Optional[str] = None
-        self._process_input()
         self._counter: Counter = Counter()
+        self._process_input()
 
     def _define_success(self) -> None:
         self.success = True

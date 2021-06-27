@@ -28,3 +28,7 @@ class FlittonFibNumberAdapter:
             self._define_success()
         else:
             self.error_message = "input needs to be a list of ints or an int"
+
+    @property
+    def count(self) -> int:
+        return self._counter.value

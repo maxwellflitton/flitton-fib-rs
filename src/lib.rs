@@ -5,10 +5,9 @@ use pyo3::wrap_pyfunction;
 
 mod fib_calcs;
 
-use 
-fib_calcs::fib_number::__pyo3_get_function_fibonacci_number;
-use 
-fib_calcs::fib_numbers::__pyo3_get_function_fibonacci_numbers;
+use fib_calcs::fib_number::__pyo3_get_function_fibonacci_number;
+use fib_calcs::fib_numbers::__pyo3_get_function_fibonacci_numbers;
+use interface::test::__pyo3_get_class_MyClass;
 
 
 #[pyfunction]
@@ -27,6 +26,6 @@ fn flitton_fib_rs(_py: Python, m: &PyModule) -> PyResult<()> {
     // m.add_wrapped(wrap_pyfunction!(internal_fib_number));
     // m.add_function(wrap_pyfunction!(generate_message, m)?)?;
     // m.add_function(wrap_pyfunction!(send_message, m)?)?;
-    // m.add_class::<Planet>()?;
+    m.add_class::<MyClass>()?;
     Ok(())
 }

@@ -4,6 +4,7 @@ use pyo3::wrap_pyfunction;
 // use pyo3::exceptions::PyTypeError;
 
 mod fib_calcs;
+mod interface;
 
 use fib_calcs::fib_number::__pyo3_get_function_fibonacci_number;
 use fib_calcs::fib_numbers::__pyo3_get_function_fibonacci_numbers;

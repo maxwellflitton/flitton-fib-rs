@@ -8,7 +8,7 @@ mod interface;
 
 use fib_calcs::fib_number::__pyo3_get_function_fibonacci_number;
 use fib_calcs::fib_numbers::__pyo3_get_function_fibonacci_numbers;
-// use interface::test::__pyo3_get_class_MyClass;
+use interface::test:MyClass;
 
 
 #[pyfunction]
@@ -34,5 +34,6 @@ fn flitton_fib_rs(_py: Python, m: &PyModule) -> PyResult<()> {
     // m.add_function(wrap_pyfunction!(generate_message, m)?)?;
     // m.add_function(wrap_pyfunction!(send_message, m)?)?;
     m.add_class::<TestClass>()?;
+    m.add_class::<MyClass>()?;
     Ok(())
 }

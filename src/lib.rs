@@ -8,7 +8,7 @@ mod interface;
 
 use fib_calcs::fib_number::__pyo3_get_function_fibonacci_number;
 use fib_calcs::fib_numbers::__pyo3_get_function_fibonacci_numbers;
-use interface::test::__pyo3_get_class_MyClass;
+// use interface::test::__pyo3_get_class_MyClass;
 
 
 #[pyfunction]

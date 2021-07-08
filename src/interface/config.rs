@@ -1,8 +1,8 @@
 use pyo3::prelude::{pyfunction, PyResult, PyDict};
 
-extern crate fib_calcs;
+use crate::fib_calcs::{fib_number, fib_numbers};
 
-use fib_calcs::{fib_number, fib_numbers};
+// use fib_calcs::{fib_number, fib_numbers};
 
 
 #[pyfunction]

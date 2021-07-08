@@ -16,5 +16,5 @@ def config_number_command() -> None:
 
     with open(str(os.getcwd()) + "/" + args.path) as f:
         config_data: dict = yaml.safe_load(f)
-    pprint("Here is the config data: ", config_data)
-    pprint(f"Here is the result: {run_config(config_data)}")
+    print("Here is the config data: ", config_data)
+    print(f"Here is the result: {run_config(config_data)}")

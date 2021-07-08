@@ -16,5 +16,5 @@ pub fn run_config<'a>(config: &'a PyDict) -> PyResult<&'a PyDict> {
         Some(data) => println!("here is the data {:?}", data),
         None => println!("number is not in the config")
     }
-    return config
+    return Ok(config)
 }

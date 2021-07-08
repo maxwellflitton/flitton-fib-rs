@@ -3,7 +3,7 @@ import yaml
 import os
 from pprint import pprint
 
-# from .flitton_fib_rs import fibonacci_number
+from .flitton_fib_rs import run_config
 
 
 def config_number_command() -> None:
@@ -16,7 +16,5 @@ def config_number_command() -> None:
 
     with open(str(os.getcwd()) + "/" + args.path) as f:
         config_data: dict = yaml.safe_load(f)
-    pprint(config_data)
-
-
-config_number_command()
+    pprint("Here is the config data: ", config_data)
+    pprint(f"Here is the result: {run_config(config_data)}")

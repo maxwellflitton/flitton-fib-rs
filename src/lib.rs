@@ -16,12 +16,6 @@ fn say_hello() {
     println!("saying hello from Rust!");
 }
 
-#[pyclass]
-pub struct TestClass {
-    num: i32,
-    debug: bool,
-}
-
 
 #[pymodule]
 fn flitton_fib_rs(_py: Python, m: &PyModule) -> PyResult<()> {
@@ -33,7 +27,6 @@ fn flitton_fib_rs(_py: Python, m: &PyModule) -> PyResult<()> {
     // m.add_wrapped(wrap_pyfunction!(internal_fib_number));
     // m.add_function(wrap_pyfunction!(generate_message, m)?)?;
     // m.add_function(wrap_pyfunction!(send_message, m)?)?;
-    m.add_class::<TestClass>()?;
     m.add_class::<MyClass>()?;
     Ok(())
 }

@@ -28,6 +28,12 @@ setup(
             'fib-number = flitton_fib_rs.'
             'fib_number_command:'
             'fib_number_command',
+            'config-fib = flitton_fib_rs.'
+            'config_number_command:'
+            'config_number_command',
         ],
     },
+    requirements=[
+        "pyyaml>=3.13"
+    ]
 )

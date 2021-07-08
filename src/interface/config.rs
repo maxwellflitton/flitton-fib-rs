@@ -1,4 +1,5 @@
-use pyo3::prelude::{pyfunction, PyResult, PyDict};
+use pyo3::prelude::{pyfunction, PyResult};
+use pyo3::types::PyDict;
 
 use crate::fib_calcs::{fib_number, fib_numbers};
 

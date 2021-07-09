@@ -26,26 +26,34 @@ fn process_numbers(input_numbers: Vec<Vec<i32>>) -> Vec<Vec<u64>> {
 
 #[pyfunction]
 pub fn run_config<'a>(config: &'a PyDict) -> PyResult<&'a PyDict> {
+
     match config.get_item("number") {
         Some(data) => {
 
             match data.downcast::<PyList>() {
                 Ok(raw_data) => {
-                    // let test = raw_data.iter().unwrap().map(|arr| arr.to_vec().unwrap()).collect::<Vec<i32>>();
-                    // let test = raw_data.iter().collect::<Vec<i32>>();
-                    let processed_results = raw_data.extract::<Vec<i32>>().unwrap();
+                    let processed_results: Vec<i32> = raw_data.extract::<Vec<i32>>().unwrap();
                     config.set_item("NUMBER RESULT", process_number(processed_results));
                 },
-                Err(_) => println!("cannot be parsed") 
+                Err(_) => println!("parameter number is not a list of integers") 
             }
         },
-        None => println!("number is not in the config")
+        None => println!("parameter number is not in the config")
     }
+
     match config.get_item("numbers") {
         Some(data) => {
-            config.set_item("NUMBERS RESULTS", data);
+            
+            match data.downcast::<PyList>() {
+                Ok(raw_data) => {
+                    let processed_results: Vec<Vec<i32>> = raw_data.extract::<Vec<Vec<i32>>>().unwrap();
+                    config.set_item("NUMBERS RESULT", process_numbers(processed_results));
+                },
+                Err(_) => println!("parameter number is not a list of integers")
+            }
+
         },
-        None => println!("number is not in the config")
+        None => println!("parameter numbers is not in the config")
     }
     return Ok(config)
 }

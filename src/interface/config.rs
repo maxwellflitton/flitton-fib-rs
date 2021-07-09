@@ -30,16 +30,15 @@ pub fn run_config<'a>(config: &'a PyDict) -> PyResult<&'a PyDict> {
         Some(data) => {
             let data_buffer = data.to_string();
             
-            match data_buffer.parse::<Vec<Vec<i32>>>() {
+            // match data_buffer.parse::<Vec<i32>>() {
+            //     Ok(raw_data) => println!("it's working"),
+            //     Err(_) => println!("cannot be parsed") 
+            // }
+
+            match data.downcast::<Vec<i32>>() {
                 Ok(raw_data) => println!("it's working"),
                 Err(_) => println!("cannot be parsed") 
             }
-
-            // match data.downcast::<Vec<i32>>() {
-            //     Ok(unwrapped_data) => config.set_item("NUMBER RESULTS", 
-            //     process_number(unwrapped_data)),
-            //     Err => println!("number is not a list of integers")
-            // }
         },
         None => println!("number is not in the config")
     }

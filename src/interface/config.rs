@@ -30,7 +30,10 @@ pub fn run_config<'a>(config: &'a PyDict) -> PyResult<&'a PyDict> {
         Some(data) => {
 
             match data.downcast::<PyList>() {
-                Ok(raw_data) => println!("it's working"),
+                Ok(raw_data) => {
+                    // let test = raw_data.iter().unwrap().map(|arr| arr.to_vec().unwrap()).collect::<Vec<i32>>();
+                    let test = raw_data.iter().unwrap().collect::<Vec<i32>>();
+                },
                 Err(_) => println!("cannot be parsed") 
             }
         },

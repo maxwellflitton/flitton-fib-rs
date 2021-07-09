@@ -28,17 +28,11 @@ fn process_numbers(input_numbers: Vec<Vec<i32>>) -> Vec<Vec<u64>> {
 pub fn run_config<'a>(config: &'a PyDict) -> PyResult<&'a PyDict> {
     match config.get_item("number") {
         Some(data) => {
-            let data_buffer = data.to_string();
-            
-            match data_buffer.parse::<Vec<i32>>() {
+
+            match data.downcast::<PyList>() {
                 Ok(raw_data) => println!("it's working"),
                 Err(_) => println!("cannot be parsed") 
             }
-
-            // match data.downcast::<Vec<i32>>() {
-            //     Ok(raw_data) => println!("it's working"),
-            //     Err(_) => println!("cannot be parsed") 
-            // }
         },
         None => println!("number is not in the config")
     }

@@ -9,7 +9,7 @@ fn process_number(input_numbers: &Vec<i32>) -> Vec<u64> {
     let mut buffer: Vec<u64> = Vec::new();
 
     for i in input_numbers {
-        buffer.push(fibonacci_number(i));
+        buffer.push(fibonacci_number(*i));
     }
     return buffer
 }
@@ -30,15 +30,15 @@ pub fn run_config<'a>(config: &'a PyDict) -> PyResult<&'a PyDict> {
         Some(data) => {
             let data_buffer = data.to_string();
             
-            // match data_buffer.parse::<Vec<i32>>() {
-            //     Ok(raw_data) => println!("it's working"),
-            //     Err(_) => println!("cannot be parsed") 
-            // }
-
-            match data.downcast::<Vec<i32>>() {
+            match data_buffer.parse::<Vec<i32>>() {
                 Ok(raw_data) => println!("it's working"),
                 Err(_) => println!("cannot be parsed") 
             }
+
+            // match data.downcast::<Vec<i32>>() {
+            //     Ok(raw_data) => println!("it's working"),
+            //     Err(_) => println!("cannot be parsed") 
+            // }
         },
         None => println!("number is not in the config")
     }

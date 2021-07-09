@@ -1,5 +1,6 @@
 use pyo3::prelude::{pyfunction, PyResult};
 use pyo3::types::{PyDict, PyList};
+use pyo3::exceptions::PyTypeError;
 
 use crate::fib_calcs::fib_number::fibonacci_number;
 use crate::fib_calcs::fib_numbers::fibonacci_numbers;
@@ -23,10 +24,12 @@ pub fn run_config<'a>(config: &'a PyDict) -> PyResult<&'a PyDict> {
             match data.downcast::<PyList>() {
                 Ok(raw_data) => {
                     let processed_results: Vec<i32> = raw_data.extract::<Vec<i32>>().unwrap();
-                    let fib_numbers: Vec<u64> = processed_results.iter().map(|x| fibonacci_number(*x)).collect();
+                    let fib_numbers: Vec<u64> = processed_results.iter().map(
+                        |x| fibonacci_number(*x)
+                    ).collect();
                     config.set_item("NUMBER RESULT", fib_numbers);
                 },
-                Err(_) => println!("parameter number is not a list of integers") 
+                Err(_) => Err(PyTypeError::new_err("parameter number is not a list of integers")).unwrap()
             }
         },
         None => println!("parameter number is not in the config")
@@ -41,7 +44,7 @@ pub fn run_config<'a>(config: &'a PyDict) -> PyResult<&'a PyDict> {
                     // let fib_numbers: Vec<Vec<u64>> = processed_results_two.iter().map(|x| fibonacci_numbers(*x)).collect();
                     config.set_item("NUMBERS RESULT", process_numbers(processed_results_two));
                 },
-                Err(_) => println!("parameter number is not a list of integers")
+                Err(_) => Err(PyTypeError::new_err("parameter numbers is not a list of lists of integers")).unwrap()
             }
 
         },

@@ -5,11 +5,11 @@ use crate::fib_calcs::fib_number::fibonacci_number;
 use crate::fib_calcs::fib_numbers::fibonacci_numbers;
 
 
-fn process_number(input_numbers: &Vec<i32>) -> Vec<u64> {
+fn process_number(input_numbers: Vec<i32>) -> Vec<u64> {
     let mut buffer: Vec<u64> = Vec::new();
 
     for i in input_numbers {
-        buffer.push(fibonacci_number(*i));
+        buffer.push(fibonacci_number(i));
     }
     return buffer
 }
@@ -34,7 +34,7 @@ pub fn run_config<'a>(config: &'a PyDict) -> PyResult<&'a PyDict> {
                     // let test = raw_data.iter().unwrap().map(|arr| arr.to_vec().unwrap()).collect::<Vec<i32>>();
                     // let test = raw_data.iter().collect::<Vec<i32>>();
                     let processed_results = raw_data.extract::<Vec<i32>>().unwrap();
-                    config.set_item("NUMBER RESULT", processed_results);
+                    config.set_item("NUMBER RESULT", process_number(processed_results));
                 },
                 Err(_) => println!("cannot be parsed") 
             }

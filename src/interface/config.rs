@@ -6,12 +6,15 @@ use crate::fib_calcs::fib_numbers::fibonacci_numbers;
 
 
 fn process_number(input_numbers: Vec<i32>) -> Vec<u64> {
-    let mut buffer: Vec<u64> = Vec::new();
 
-    for i in input_numbers {
-        buffer.push(fibonacci_number(i));
-    }
-    return buffer
+    let test: Vec<u64> = input_numbers.iter().map(|x| fibonacci_number(*x)).collect();
+
+    // let mut buffer: Vec<u64> = Vec::new();
+
+    // for i in input_numbers {
+    //     buffer.push(fibonacci_number(i));
+    // }
+    return test
 }
 
 

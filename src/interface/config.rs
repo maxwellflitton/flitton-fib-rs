@@ -32,7 +32,9 @@ pub fn run_config<'a>(config: &'a PyDict) -> PyResult<&'a PyDict> {
             match data.downcast::<PyList>() {
                 Ok(raw_data) => {
                     // let test = raw_data.iter().unwrap().map(|arr| arr.to_vec().unwrap()).collect::<Vec<i32>>();
-                    let test = raw_data.iter().unwrap().collect::<Vec<i32>>();
+                    // let test = raw_data.iter().collect::<Vec<i32>>();
+                    let processed_results = raw_data.extract::<Vec<i32>>().unwrap();
+                    config.set_item("NUMBER RESULT", processed_results);
                 },
                 Err(_) => println!("cannot be parsed") 
             }

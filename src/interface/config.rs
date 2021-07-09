@@ -5,19 +5,6 @@ use crate::fib_calcs::fib_number::fibonacci_number;
 use crate::fib_calcs::fib_numbers::fibonacci_numbers;
 
 
-fn process_number(input_numbers: Vec<i32>) -> Vec<u64> {
-
-    let test: Vec<u64> = input_numbers.iter().map(|x| fibonacci_number(*x)).collect();
-
-    // let mut buffer: Vec<u64> = Vec::new();
-
-    // for i in input_numbers {
-    //     buffer.push(fibonacci_number(i));
-    // }
-    return test
-}
-
-
 fn process_numbers(input_numbers: Vec<Vec<i32>>) -> Vec<Vec<u64>> {
     let mut buffer: Vec<Vec<u64>> = Vec::new();
     for i in input_numbers {
@@ -36,7 +23,8 @@ pub fn run_config<'a>(config: &'a PyDict) -> PyResult<&'a PyDict> {
             match data.downcast::<PyList>() {
                 Ok(raw_data) => {
                     let processed_results: Vec<i32> = raw_data.extract::<Vec<i32>>().unwrap();
-                    config.set_item("NUMBER RESULT", process_number(processed_results));
+                    let fib_numbers: Vec<u64> = processed_results.iter().map(|x| fibonacci_number(*x)).collect();
+                    config.set_item("NUMBER RESULT", fib_numbers);
                 },
                 Err(_) => println!("parameter number is not a list of integers") 
             }
@@ -49,8 +37,9 @@ pub fn run_config<'a>(config: &'a PyDict) -> PyResult<&'a PyDict> {
             
             match data.downcast::<PyList>() {
                 Ok(raw_data) => {
-                    let processed_results: Vec<Vec<i32>> = raw_data.extract::<Vec<Vec<i32>>>().unwrap();
-                    config.set_item("NUMBERS RESULT", process_numbers(processed_results));
+                    let processed_results_two: Vec<Vec<i32>> = raw_data.extract::<Vec<Vec<i32>>>().unwrap();
+                    let fib_numbers: Vec<Vec<u64>> = processed_results_two.iter().map(|x| fibonacci_numbers(*x)).collect();
+                    config.set_item("NUMBERS RESULT", fib_numbers);
                 },
                 Err(_) => println!("parameter number is not a list of integers")
             }

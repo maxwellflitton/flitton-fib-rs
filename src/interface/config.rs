@@ -38,8 +38,8 @@ pub fn run_config<'a>(config: &'a PyDict) -> PyResult<&'a PyDict> {
             match data.downcast::<PyList>() {
                 Ok(raw_data) => {
                     let processed_results_two: Vec<Vec<i32>> = raw_data.extract::<Vec<Vec<i32>>>().unwrap();
-                    let fib_numbers: Vec<Vec<u64>> = processed_results_two.iter().map(|x| fibonacci_numbers(*x)).collect();
-                    config.set_item("NUMBERS RESULT", fib_numbers);
+                    // let fib_numbers: Vec<Vec<u64>> = processed_results_two.iter().map(|x| fibonacci_numbers(*x)).collect();
+                    config.set_item("NUMBERS RESULT", process_numbers(processed_results_two));
                 },
                 Err(_) => println!("parameter number is not a list of integers")
             }

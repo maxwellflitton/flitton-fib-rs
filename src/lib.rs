@@ -9,7 +9,7 @@ mod interface;
 use fib_calcs::fib_number::__pyo3_get_function_fibonacci_number;
 use fib_calcs::fib_numbers::__pyo3_get_function_fibonacci_numbers;
 use interface::config::__pyo3_get_function_run_config;
-use interface::object::__pyo3_object_interface;
+use interface::object::__pyo3_get_object_interface;
 // use interface::test::MyClass;
 
 

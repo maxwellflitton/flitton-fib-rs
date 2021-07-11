@@ -26,21 +26,6 @@ pub fn object_interface<'a>(input_object: &'a PyAny)
     let mut config_dict: &PyDict = PyDict::new(py);
     config_dict = extract_data(input_object, "number", config_dict);
     config_dict = extract_data(input_object, "numbers", config_dict);
-    // match input_object.getattr("number") {
-    //     Ok(data) => {
-    //         config_dict.set_item("number", data).unwrap();
-    //     },
-    //     Err(_) => Err(PyLookupError::new_err(
-    //         "attribute number is missing")).unwrap()
-    // }
-
-    // match input_object.getattr("numbers") {
-    //     Ok(data) => {
-    //         config_dict.set_item("numbers", data).unwrap();
-    //     }
-    //     Err(_) => Err(PyLookupError::new_err(
-    //         "attribute numbers is missing")).unwrap()
-    // }
 
     let output_dict: &PyDict = run_config(config_dict).unwrap();
 

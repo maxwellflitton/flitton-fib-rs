@@ -8,8 +8,8 @@ use crate::fib_calcs::fib_numbers::fibonacci_numbers;
 
 pub fn object_interface<'a>(input_object: &'a PyAny) -> PyResult<&'a PyAny> {
     match input_object.getattr("number") {
-        Some(_) => println!("the object has number"),
-        None => println!("the object does not have number")
+        Ok(_) => println!("the object has number"),
+        Err(_) => println!("the object does not have number")
     }
     return PyResult(input_object)
 }

@@ -8,7 +8,8 @@ from .flitton_fib_rs import run_config
 
 def config_number_command() -> None:
     parser = argparse.ArgumentParser(
-        description='Calculate Fibonacci numbers using a config file')
+        description='Calculate Fibonacci numbers '
+                    'using a config file')
     parser.add_argument('--path', action='store',
                         type=str, required=True,
                         help="path to config file")
@@ -16,5 +17,7 @@ def config_number_command() -> None:
 
     with open(str(os.getcwd()) + "/" + args.path) as f:
         config_data: dict = yaml.safe_load(f)
-    print("Here is the config data: ", config_data)
-    print(f"Here is the result: {run_config(config_data)}")
+    print("Here is the config data: ")
+    pprint(config_data)
+    print("Here is the result:")
+    pprint(run_config(config_data))

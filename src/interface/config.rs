@@ -29,7 +29,8 @@ pub fn run_config<'a>(config: &'a PyDict) -> PyResult<&'a PyDict> {
                     ).collect();
                     config.set_item("NUMBER RESULT", fib_numbers);
                 },
-                Err(_) => Err(PyTypeError::new_err("parameter number is not a list of integers")).unwrap()
+                Err(_) => Err(PyTypeError::new_err(
+                    "parameter number is not a list of integers")).unwrap()
             }
         },
         None => println!("parameter number is not in the config")

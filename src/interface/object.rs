@@ -6,6 +6,7 @@ use crate::fib_calcs::fib_number::fibonacci_number;
 use crate::fib_calcs::fib_numbers::fibonacci_numbers;
 
 
+#[pyfunction]
 pub fn object_interface<'a>(input_object: &'a PyAny) -> PyResult<&'a PyAny> {
     match input_object.getattr("number") {
         Ok(_) => println!("the object has number"),

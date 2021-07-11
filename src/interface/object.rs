@@ -11,5 +11,5 @@ pub fn object_interface<'a>(input_object: &'a PyAny) -> PyResult<&'a PyAny> {
         Ok(_) => println!("the object has number"),
         Err(_) => println!("the object does not have number")
     }
-    return PyResult(input_object)
+    return Ok(input_object)
 }

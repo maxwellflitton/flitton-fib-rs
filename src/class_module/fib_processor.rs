@@ -3,7 +3,9 @@ use pyo3::prelude::{pyclass, pymethods};
 
 #[pyclass]
 pub struct FibProcessor {
+    #[pyo3(get, set)]
     pub number: Vec<i32>,
+    #[pyo3(get, set)]
     pub numbers: Vec<Vec<i32>>
 }
 

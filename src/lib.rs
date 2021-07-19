@@ -20,6 +20,7 @@ fn say_hello() {
     println!("saying hello from Rust!");
 }
 
+#[pyfunction]
 fn time_add_vectors(total_vector_size: i32) -> u64 {
     let start = SystemTime::now();
     let total_vector_size: i32 = 10;
@@ -55,6 +56,7 @@ fn flitton_fib_rs(_py: Python, m: &PyModule) -> PyResult<()> {
     m.add_wrapped(wrap_pyfunction!(run_config));
     m.add_wrapped(wrap_pyfunction!(object_interface));
     m.add_wrapped(wrap_pyfunction!(process_range));
+    m.add_wrapped(wrap_pyfunction!(time_add_vectors));
     // m.add_class::<FibProcessor>()?;
     // m.add_wrapped(wrap_pyfunction!(fibonacci_reccursive));
     // m.add_wrapped(wrap_pyfunction!(internal_fib_number));

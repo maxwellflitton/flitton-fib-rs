@@ -20,7 +20,7 @@ fn say_hello() {
     println!("saying hello from Rust!");
 }
 
-fn time_add_vectors(total_vector_size: i32) -> u128 {
+fn time_add_vectors(total_vector_size: i32) -> u64 {
     let start = SystemTime::now();
     let total_vector_size: i32 = 10;
     
@@ -31,12 +31,12 @@ fn time_add_vectors(total_vector_size: i32) -> u128 {
     for i in &first_vector {
         buffer.push(first_vector[**&i as usize] + second_vector[*i as usize]);
     }
-   return start.duration_since(UNIX_EPOCH).expect("Time went backwards").as_millis() / 1000
+   return start.elapsed().unwrap().as_secs()
 }
 
 #[pyfunction]
-fn process_range(total: i32) -> Vec<u128> {
-    let mut buffer: Vec<u128> = Vec::new();
+fn process_range(total: i32) -> Vec<u64> {
+    let mut buffer: Vec<u64> = Vec::new();
     let total_jobs: Vec<i32> = (0..total).map(|x| x).collect();
 
     for i in total_jobs {

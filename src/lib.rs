@@ -1,6 +1,6 @@
 use pyo3::prelude::*;
 use pyo3::wrap_pyfunction;
-use std::time::{Duration, Instant};
+use std::time::{SystemTime, UNIX_EPOCH};
 
 
 mod fib_calcs;
@@ -20,8 +20,8 @@ fn say_hello() {
     println!("saying hello from Rust!");
 }
 
-fn time_add_vectors(total_vector_size: i32) -> u64 {
-    let now = Instant::now();
+fn time_add_vectors(total_vector_size: i32) -> u128 {
+    let start = SystemTime::now();
     let total_vector_size: i32 = 10;
     
     let mut buffer: Vec<i32> = Vec::new();
@@ -31,12 +31,12 @@ fn time_add_vectors(total_vector_size: i32) -> u64 {
     for i in &first_vector {
         buffer.push(first_vector[**&i as usize] + second_vector[*i as usize]);
     }
-   return now.elapsed().as_secs()
+   return start.duration_since(UNIX_EPOCH).expect("Time went backwards").as_millis()
 }
 
 #[pyfunction]
-fn process_range(total: i32) -> Vec<u64> {
-    let mut buffer: Vec<u64> = Vec::new();
+fn process_range(total: i32) -> Vec<u128> {
+    let mut buffer: Vec<u128> = Vec::new();
     let total_jobs: Vec<i32> = (0..total).map(|x| x).collect();
 
     for i in total_jobs {

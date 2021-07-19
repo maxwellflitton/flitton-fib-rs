@@ -21,8 +21,7 @@ fn say_hello() {
 }
 
 #[pyfunction]
-fn time_add_vectors(total_vector_size: i32) -> u64 {
-    let start = SystemTime::now();
+fn time_add_vectors(total_vector_size: i32) -> Vec<i32> {
     let total_vector_size: i32 = 10;
     
     let mut buffer: Vec<i32> = Vec::new();
@@ -32,18 +31,7 @@ fn time_add_vectors(total_vector_size: i32) -> u64 {
     for i in &first_vector {
         buffer.push(first_vector[**&i as usize] + second_vector[*i as usize]);
     }
-   return start.elapsed().unwrap().as_secs()
-}
-
-#[pyfunction]
-fn process_range(total: i32) -> Vec<u64> {
-    let mut buffer: Vec<u64> = Vec::new();
-    let total_jobs: Vec<i32> = (0..total).map(|x| x).collect();
-
-    for i in total_jobs {
-        buffer.push(time_add_vectors(i));
-    }
-    return buffer
+   return buffer
 }
 
 
@@ -55,7 +43,6 @@ fn flitton_fib_rs(_py: Python, m: &PyModule) -> PyResult<()> {
     m.add_wrapped(wrap_pyfunction!(fibonacci_numbers));
     m.add_wrapped(wrap_pyfunction!(run_config));
     m.add_wrapped(wrap_pyfunction!(object_interface));
-    m.add_wrapped(wrap_pyfunction!(process_range));
     m.add_wrapped(wrap_pyfunction!(time_add_vectors));
     // m.add_class::<FibProcessor>()?;
     // m.add_wrapped(wrap_pyfunction!(fibonacci_reccursive));

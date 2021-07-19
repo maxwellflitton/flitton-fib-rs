@@ -11,7 +11,7 @@ use fib_calcs::fib_number::__pyo3_get_function_fibonacci_number;
 use fib_calcs::fib_numbers::__pyo3_get_function_fibonacci_numbers;
 use interface::config::__pyo3_get_function_run_config;
 use interface::object::__pyo3_get_function_object_interface;
-use class_module::fib_processor::FibProcessor;
+// use class_module::fib_processor::FibProcessor;
 // use interface::test::MyClass;
 
 
@@ -55,7 +55,7 @@ fn flitton_fib_rs(_py: Python, m: &PyModule) -> PyResult<()> {
     m.add_wrapped(wrap_pyfunction!(run_config));
     m.add_wrapped(wrap_pyfunction!(object_interface));
     m.add_wrapped(wrap_pyfunction!(process_range));
-    m.add_class::<FibProcessor>()?;
+    // m.add_class::<FibProcessor>()?;
     // m.add_wrapped(wrap_pyfunction!(fibonacci_reccursive));
     // m.add_wrapped(wrap_pyfunction!(internal_fib_number));
     // m.add_function(wrap_pyfunction!(generate_message, m)?)?;

@@ -31,7 +31,7 @@ fn time_add_vectors(total_vector_size: i32) -> u128 {
     for i in &first_vector {
         buffer.push(first_vector[**&i as usize] + second_vector[*i as usize]);
     }
-   return start.duration_since(UNIX_EPOCH).expect("Time went backwards").as_millis()
+   return start.duration_since(UNIX_EPOCH).expect("Time went backwards").as_millis() / 1000
 }
 
 #[pyfunction]

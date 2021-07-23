@@ -55,7 +55,7 @@ fn flitton_fib_rs(_py: Python, m: &PyModule) -> PyResult<()> {
     m.add_wrapped(wrap_pyfunction!(run_config));
     m.add_wrapped(wrap_pyfunction!(object_interface));
     m.add_wrapped(wrap_pyfunction!(time_add_vectors));
-    m.add_wrapped(wrap_pyfunction!(time_add_vectors));
+    m.add_wrapped(wrap_pyfunction!(test_numpy));
     m.add_class::<FibProcessor>()?;
     Ok(())
 }

@@ -1,6 +1,6 @@
 use pyo3::prelude::*;
 use pyo3::wrap_pyfunction;
-use pyo3::types::{PyAny, PyDict, PyList};
+use pyo3::types::PyDict;
 
 
 mod fib_calcs;
@@ -34,7 +34,7 @@ fn time_add_vectors(total_vector_size: i32) -> Vec<i32> {
 }
 
 #[pyfunction]
-fn test_numpy() -> i32 {
+fn test_numpy() -> PyResult<&PyAny> {
     let gil = Python::acquire_gil();
     let py = gil.python();
     let locals = PyDict::new(py);
@@ -48,9 +48,9 @@ fn test_numpy() -> i32 {
     locals.set_item("input_matrix", input_matrix);
     let calc_code = "numpy.dot(weights_matrix, input_matrix)";
     let result_end = py.eval(calc_code, None, Some(&locals)).unwrap();
-    println!("{:?}", result_end);
+    // println!("{:?}", result_end);
     // let weights = weights_matrix.extract().unwrap();
-    return 2
+    return Ok(result_end)
 }
 
 

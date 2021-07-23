@@ -1,5 +1,6 @@
 use pyo3::prelude::*;
 use pyo3::wrap_pyfunction;
+use pyo3::types::{PyAny, PyDict, PyList};
 
 
 mod fib_calcs;
@@ -11,7 +12,6 @@ use fib_calcs::fib_numbers::__pyo3_get_function_fibonacci_numbers;
 use interface::config::__pyo3_get_function_run_config;
 use interface::object::__pyo3_get_function_object_interface;
 use class_module::fib_processor::FibProcessor;
-// use interface::test::MyClass;
 
 
 #[pyfunction]
@@ -33,21 +33,26 @@ fn time_add_vectors(total_vector_size: i32) -> Vec<i32> {
    return buffer
 }
 
+#[pyfunction]
+fn test_numpy() {
+    let gil = Python::acquire_gil();
+    let py = gil.python();
+    let locals = [("numpy", py.import("numpy")?)].into_py_dict(py);
+    let code = "numpy.array([[3, 2], [1, 4]])";
+    let weights_matrix = py.eval(code, None, Some(&locals))?.extract()?;
+    return weights_matrix
+}
+
 
 #[pymodule]
 fn flitton_fib_rs(_py: Python, m: &PyModule) -> PyResult<()> {
-    // m.add_function(wrap_pyfunction!(fib_number, m)?)?;
     m.add_wrapped(wrap_pyfunction!(say_hello));
     m.add_wrapped(wrap_pyfunction!(fibonacci_number));
     m.add_wrapped(wrap_pyfunction!(fibonacci_numbers));
     m.add_wrapped(wrap_pyfunction!(run_config));
     m.add_wrapped(wrap_pyfunction!(object_interface));
     m.add_wrapped(wrap_pyfunction!(time_add_vectors));
+    m.add_wrapped(wrap_pyfunction!(time_add_vectors));
     m.add_class::<FibProcessor>()?;
-    // m.add_wrapped(wrap_pyfunction!(fibonacci_reccursive));
-    // m.add_wrapped(wrap_pyfunction!(internal_fib_number));
-    // m.add_function(wrap_pyfunction!(generate_message, m)?)?;
-    // m.add_function(wrap_pyfunction!(send_message, m)?)?;
-    // m.add_class::<MyClass>()?;
     Ok(())
 }

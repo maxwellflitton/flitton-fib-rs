@@ -34,7 +34,7 @@ fn time_add_vectors(total_vector_size: i32) -> Vec<i32> {
 }
 
 #[pyfunction]
-fn test_numpy() -> PyResult<PyAny> {
+fn test_numpy() -> i32 {
     let gil = Python::acquire_gil();
     let py = gil.python();
     let locals = PyDict::new(py);
@@ -42,8 +42,9 @@ fn test_numpy() -> PyResult<PyAny> {
     // let locals = [("numpy", py.import("numpy").unwrap())].into_py_dict(py);
     let code = "numpy.array([[3, 2], [1, 4]])";
     let weights_matrix = py.eval(code, None, Some(&locals)).unwrap();
+    println!("{:?}", weights_matrix);
     // let weights = weights_matrix.extract().unwrap();
-    return Ok(*weights_matrix)
+    return 2
 }
 
 

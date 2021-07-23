@@ -32,9 +32,9 @@ fn time_add_vectors(total_vector_size: i32) -> Vec<i32> {
     }
    return buffer
 }
-
+å
 #[pyfunction]
-fn test_numpy() -> PyResult<&PyAny> {
+fn test_numpy<'a>(result_dict: PyDict) -> PyResult<&'a PyDict> {
     let gil = Python::acquire_gil();
     let py = gil.python();
     let locals = PyDict::new(py);
@@ -48,9 +48,10 @@ fn test_numpy() -> PyResult<&PyAny> {
     locals.set_item("input_matrix", input_matrix);
     let calc_code = "numpy.dot(weights_matrix, input_matrix)";
     let result_end = py.eval(calc_code, None, Some(&locals)).unwrap();
+    result_dict.set_item("numpy result", result_end);
     // println!("{:?}", result_end);
     // let weights = weights_matrix.extract().unwrap();
-    return Ok(result_end)
+    return Ok(result_dict)
 }
 
 

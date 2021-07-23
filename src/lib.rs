@@ -38,7 +38,7 @@ fn test_numpy() -> PyAny {
     let gil = Python::acquire_gil();
     let py = gil.python();
     let locals = PyDict::new(py);
-    locals.set_item("numpy", py.import("numpy")?)?;
+    locals.set_item("numpy", py.import("numpy").unwrap());
     // let locals = [("numpy", py.import("numpy").unwrap())].into_py_dict(py);
     let code = "numpy.array([[3, 2], [1, 4]])";
     let weights_matrix = py.eval(code, None, Some(&locals)).unwrap();

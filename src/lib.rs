@@ -42,10 +42,10 @@ fn test_numpy() -> i32 {
     // let locals = [("numpy", py.import("numpy").unwrap())].into_py_dict(py);
     let code = "numpy.array([[3, 2], [1, 4]])";
     let weights_matrix = py.eval(code, None, Some(&locals)).unwrap();
-    locals.set_item("weights_matrix", weights_matrix).unwrap());
+    locals.set_item("weights_matrix", weights_matrix);
     let new_code = "numpy.array([[10], [20]])";
     let input_matrix = py.eval(new_code, None, Some(&locals)).unwrap();
-    locals.set_item("input_matrix", input_matrix).unwrap());
+    locals.set_item("input_matrix", input_matrix);
     let calc_code = "numpy.dot(weights_matrix, input_matrix)";
     let result_end = py.eval(calc_code, None, Some(&locals)).unwrap();
     println!("{:?}", result_end);

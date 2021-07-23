@@ -38,15 +38,18 @@ fn test_numpy<'a>(result_dict: &'a PyDict) -> PyResult<&'a PyDict> {
     let gil = Python::acquire_gil();
     let py = gil.python();
     let locals = PyDict::new(py);
-    locals.set_item("numpy", py.import("numpy").unwrap());
+    locals.set_item("np", py.import("numpy").unwrap());
     // let locals = [("numpy", py.import("numpy").unwrap())].into_py_dict(py);
-    let code = "numpy.array([[3, 2], [1, 4]])";
+
+    let code = "np.array([[3, 2], [1, 4]])";
     let weights_matrix = py.eval(code, None, Some(&locals)).unwrap();
     locals.set_item("weights_matrix", weights_matrix);
-    let new_code = "numpy.array([[10], [20]])";
+
+    let new_code = "np.array([[10], [20]])";
     let input_matrix = py.eval(new_code, None, Some(&locals)).unwrap();
     locals.set_item("input_matrix", input_matrix);
-    let calc_code = "numpy.dot(weights_matrix, input_matrix)";
+
+    let calc_code = "np.dot(weights_matrix, input_matrix)";
     let result_end = py.eval(calc_code, None, Some(&locals)).unwrap();
     result_dict.set_item("numpy result", result_end);
     // println!("{:?}", result_end);

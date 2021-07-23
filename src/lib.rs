@@ -32,9 +32,9 @@ fn time_add_vectors(total_vector_size: i32) -> Vec<i32> {
     }
    return buffer
 }
-å
+
 #[pyfunction]
-fn test_numpy<'a>(result_dict: PyDict) -> PyResult<&'a PyDict> {
+fn test_numpy<'a>(result_dict: &'a PyDict) -> PyResult<&'a PyDict> {
     let gil = Python::acquire_gil();
     let py = gil.python();
     let locals = PyDict::new(py);

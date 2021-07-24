@@ -26,6 +26,12 @@ fn get_times<'a>(py: &'a Python, locals: &PyDict) -> &'a PyAny {
     return times
 }
 
+fn get_parameters<'a>(py: &'a Python, locals: &PyDict) -> &'a PyAny {
+    let code: &str = "np.dot(inverted_weights_matrix, input_vector)";
+    let parameters = py.eval(code, None, Some(&locals)).unwrap();
+    return parameters
+}
+
 
 #[pyfunction]
 pub fn calculate_times<'a>(result_dict: &'a PyDict, distance: i32, traffic_grade: i32) -> PyResult<&'a PyDict> {
@@ -35,24 +41,25 @@ pub fn calculate_times<'a>(result_dict: &'a PyDict, distance: i32, traffic_grade
     locals.set_item("np", py.import("numpy").unwrap());
 
     get_weight_matrix(&py, locals);
-    
-    // let reference_dict = result_dict.clone();
-    // let distance: PyAny = **&reference_dict.get_item("distance").unwrap();
-    // let traffic_grade: PyAny = **&result_dict.get_item("traffic grade").unwrap();
-
-    // let distance_int: i32 = distance.extract::<i32>().unwrap();
-    // let traffic_grad_int: i32 = traffic_grade.extract::<i32>().unwrap();
-
     get_input_vector(&py, locals, distance, traffic_grade);
     result_dict.set_item("times", get_times(&py, locals));
     return Ok(result_dict)
 }
 
 
-// #[pyfunction]
-// pub fn calculate_parameters() {
+#[pyfunction]
+pub fn calculate_parameters<'a>(result_dict: &'a PyDict, car_time: i32, truck_time: i32) -> PyResult<&'a PyDict> {
+    let gil = Python::acquire_gil();
+    let py = gil.python();
+    let locals = PyDict::new(py);
+    locals.set_item("np", py.import("numpy").unwrap());
 
-// }
+    get_weight_matrix(&py, locals);
+    invert_get_weight_matrix(&py, locals);
+    get_input_vector(&py, locals, car_time, truck_time);
+    result_dict.set_item("parameters", get_parameters(&py, locals));
+    return Ok(result_dict)
+}
 
 
 // #[pyfunction]

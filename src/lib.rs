@@ -13,6 +13,7 @@ use fib_calcs::fib_numbers::__pyo3_get_function_fibonacci_numbers;
 use interface::config::__pyo3_get_function_run_config;
 use interface::object::__pyo3_get_function_object_interface;
 use numpy_model::__pyo3_get_function_calculate_times;
+use numpy_model::__pyo3_get_function_calculate_parameters;
 use class_module::fib_processor::FibProcessor;
 
 
@@ -67,6 +68,7 @@ fn flitton_fib_rs(_py: Python, m: &PyModule) -> PyResult<()> {
     m.add_wrapped(wrap_pyfunction!(time_add_vectors));
     m.add_wrapped(wrap_pyfunction!(test_numpy));
     m.add_wrapped(wrap_pyfunction!(calculate_times));
+    m.add_wrapped(wrap_pyfunction!(calculate_parameters));
     m.add_class::<FibProcessor>()?;
     Ok(())
 }

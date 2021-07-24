@@ -6,11 +6,13 @@ use pyo3::types::PyDict;
 mod fib_calcs;
 mod interface;
 mod class_module;
+mod numpy_model;
 
 use fib_calcs::fib_number::__pyo3_get_function_fibonacci_number;
 use fib_calcs::fib_numbers::__pyo3_get_function_fibonacci_numbers;
 use interface::config::__pyo3_get_function_run_config;
 use interface::object::__pyo3_get_function_object_interface;
+use numpy_model::__pyo3_get_function_calculate_times;
 use class_module::fib_processor::FibProcessor;
 
 
@@ -39,7 +41,6 @@ fn test_numpy<'a>(result_dict: &'a PyDict) -> PyResult<&'a PyDict> {
     let py = gil.python();
     let locals = PyDict::new(py);
     locals.set_item("np", py.import("numpy").unwrap());
-    // let locals = [("numpy", py.import("numpy").unwrap())].into_py_dict(py);
 
     let code = "np.array([[3, 2], [1, 4]])";
     let weights_matrix = py.eval(code, None, Some(&locals)).unwrap();
@@ -52,8 +53,6 @@ fn test_numpy<'a>(result_dict: &'a PyDict) -> PyResult<&'a PyDict> {
     let calc_code = "np.dot(weights_matrix, input_matrix)";
     let result_end = py.eval(calc_code, None, Some(&locals)).unwrap();
     result_dict.set_item("numpy result", result_end);
-    // println!("{:?}", result_end);
-    // let weights = weights_matrix.extract().unwrap();
     return Ok(result_dict)
 }
 
@@ -67,6 +66,7 @@ fn flitton_fib_rs(_py: Python, m: &PyModule) -> PyResult<()> {
     m.add_wrapped(wrap_pyfunction!(object_interface));
     m.add_wrapped(wrap_pyfunction!(time_add_vectors));
     m.add_wrapped(wrap_pyfunction!(test_numpy));
+    m.add_wrapped(wrap_pyfunction!(calculate_times));
     m.add_class::<FibProcessor>()?;
     Ok(())
 }

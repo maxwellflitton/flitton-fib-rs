@@ -23,6 +23,7 @@ fn get_input_vector(py: &Python, locals: &PyDict, first: i32, second: i32) -> ()
 fn get_times<'a>(py: &'a Python, locals: &PyDict) -> &'a PyAny {
     let code: &str = "np.dot(weights_matrix, input_vector)";
     let times = py.eval(code, None, Some(&locals)).unwrap();
+    let ourcome = times.extract::<i32>().unwrap();
     return times
 }
 
@@ -60,25 +61,3 @@ pub fn calculate_parameters<'a>(result_dict: &'a PyDict, car_time: i32, truck_ti
     result_dict.set_item("parameters", get_parameters(&py, locals));
     return Ok(result_dict)
 }
-
-
-// #[pyfunction]
-// fn test_numpy<'a>(result_dict: &'a PyDict) -> PyResult<&'a PyDict> {
-//     let gil = Python::acquire_gil();
-//     let py = gil.python();
-//     let locals = PyDict::new(py);
-//     locals.set_item("np", py.import("numpy").unwrap());
-
-//     let code = "np.array([[3, 2], [1, 4]])";
-//     let weights_matrix = py.eval(code, None, Some(&locals)).unwrap();
-//     locals.set_item("weights_matrix", weights_matrix);
-
-//     let new_code = "np.array([[10], [20]])";
-//     let input_matrix = py.eval(new_code, None, Some(&locals)).unwrap();
-//     locals.set_item("input_matrix", input_matrix);
-
-//     let calc_code = "np.dot(weights_matrix, input_matrix)";
-//     let result_end = py.eval(calc_code, None, Some(&locals)).unwrap();
-//     result_dict.set_item("numpy result", result_end);
-//     return Ok(result_dict)
-// }

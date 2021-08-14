@@ -24,8 +24,6 @@ fn say_hello() {
 
 #[pyfunction]
 fn time_add_vectors(total_vector_size: i32) -> Vec<i32> {
-    let total_vector_size: i32 = 10;
-    
     let mut buffer: Vec<i32> = Vec::new();
     let first_vector: Vec<i32> = (0..total_vector_size.clone()).map(|x| x).collect();
     let second_vector: Vec<i32> = (0..total_vector_size).map(|x| x).collect();

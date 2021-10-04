@@ -9,6 +9,7 @@ mod class_module;
 mod numpy_model;
 
 use fib_calcs::fib_number::__pyo3_get_function_fibonacci_number;
+use fib_calcs::fib_number::__pyo3_get_function_fibonacci_number_none_recur;
 use fib_calcs::fib_numbers::__pyo3_get_function_fibonacci_numbers;
 use interface::config::__pyo3_get_function_run_config;
 use interface::object::__pyo3_get_function_object_interface;
@@ -59,6 +60,7 @@ fn test_numpy<'a>(result_dict: &'a PyDict) -> PyResult<&'a PyDict> {
 #[pymodule]
 fn flitton_fib_rs(_py: Python, m: &PyModule) -> PyResult<()> {
     m.add_wrapped(wrap_pyfunction!(say_hello));
+    m.add_wrapped(wrap_pyfunction!(fibonacci_number_none_recur));
     m.add_wrapped(wrap_pyfunction!(fibonacci_number));
     m.add_wrapped(wrap_pyfunction!(fibonacci_numbers));
     m.add_wrapped(wrap_pyfunction!(run_config));

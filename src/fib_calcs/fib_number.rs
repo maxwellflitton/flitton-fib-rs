@@ -13,11 +13,34 @@ pub fn fibonacci_number(n: i32) -> u64 {
 	}
 }
 
+#[pyfunction]
+pub fn fibonacci_number_none_recur(n: i32) -> u64 {
+
+	match n {
+		0     => panic!("zero is not a right argument to fibonacci_number!"),
+		1 | 2 => return 1 as u64,
+		_ => {
+			let mut a: i32 = 1;
+			let mut b: i32 = 1;
+			let mut result: i32 = 2;
+
+			for i in 2..n {
+				let placeholder: i32 = b;
+				b = a + b;
+				a = placeholder;
+				result = b
+			}
+			return result as u64;
+		}
+	}
+}
+
 
 #[cfg(test)]
 mod fibonacci_number_tests {
 
 	use super::fibonacci_number;
+	use super::fibonacci_number_none_recur;
 
 	#[test]
 	#[should_panic]
@@ -43,6 +66,11 @@ mod fibonacci_number_tests {
 	#[test]
 	fn test_twenty() {
 		assert_eq!(fibonacci_number(20), 6765);
+	}
+
+	#[test]
+	fn test_twenty_none_recur() {
+		assert_eq!(fibonacci_number_none_recur(20), 6765);
 	}
 
 	#[test]

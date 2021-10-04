@@ -33,8 +33,8 @@ setup(
             'config_number_command',
         ],
     },
-    requirements=[
-        "pyyaml>=3.13",
-        "numpy"
-    ]
+    # requirements=[
+    #     "pyyaml>=3.13",
+    #     "numpy"
+    # ]
 )

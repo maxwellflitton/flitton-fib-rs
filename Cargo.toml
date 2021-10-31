@@ -9,7 +9,7 @@ edition = "2018"
 
 [lib]
 name = "flitton_fib_rs"
-crate-type=["rlib", "cdylib"]
+crate-type=["cdylib"]
 
 [dependencies.pyo3]
 version = "0.13.2"
